@@ -1,0 +1,67 @@
+
+
+# This file introduces some of CDO capabilities
+
+# CDO is a very simple UNIX command line interface
+## BE CAREFULL WITH CDO CONVERSIONS AND ALWAYS CROSS-CHECK THIS CONVERTED OUTPUT FILE DATA WITH INPUT FILE DATA MANUALLY s
+
+# merge different data having same time-steps
+	cdo merge input1.nc input2.nc outputname.nc input3.nc 
+	
+# merge different data having two different time-steps 
+	cdo cat input1.nc input2.nc outputname.nc input3.nc 
+	
+# to merge time-steps
+	cdo mergetime input1.nc input2.nc input3.nc ouputname.nc 
+	
+# to merge/copy all data file into one data file
+	cdo copy input1.nc input2.nc input3.nc ouputname.nc 
+
+
+
+
+# to select "january" only from 1 swh_dec2020.nc and save to swh_jan.nc , similary for feb, put 2 and so on...
+	cdo selmon,1 swh_dec2020.nc swh_jan.nc 
+
+# annual average of monthly data "mwd_monthly.nc" to annual data "mwd_annual.nc"  
+	cdo -yearmean mwd_monthly.nc mwd_annual.nc
+
+# monthly climatology of monthly data "mwd_monthly.nc"
+	cdo -ymonmean mwd_monthly.nc mwd_climatology.nc
+
+
+
+# seasonal mean procedure; 
+# (1) select seasons and save as netcdf 
+	cdo select,season=ONDJ mwd_monthly.nc mwd_ondj.nc # select seasons, Oct to Jan
+
+# (2) calculate annual average of 'season only' netcdf file 
+	cdo -yearmean mwd_ondj.nc mwd_ondj_mean.nc # calculate annual average
+
+	
+
+# rename variable name (file-in-place)
+	cdo chname,exist_var_name,new_var_name input_data.nc input_data.nc 
+	
+# rename variable name (to separate file)
+	cdo chname,exist_var_name,new_var_name input_data.nc output_data.nc  
+        
+# get specific range of values
+	cdo setvrange,0,100 mon_2000.nc out2.nc
+
+## Below three commands shows how to calculate anomaly from monthly data 
+# To convert monthly data to yearly data (assuming the name of the original monthly data is "SST_monthly.nc ")
+	cdo yearmean SST_monthly.nc SST_yearmean.nc # inginre this if your data already in yearly
+	
+# To calculate the long-term mean use:
+	cdo timmean SST_yearmean.nc SST_clim.nc
+	
+# To calculate the yearly anomaly use:
+	cdo sub SST_yearmean.nc SST_clim.nc SST_anomaly
+	
+#For more insight : https://code.mpimet.mpg.de/projects/cdo/embedded/cdo.pdf
+# There are more checkout the cdo.pdf and cdo_refcard.pdf
+
+#      Cheers! 
+
+#####################################################################################################################################
