@@ -1,0 +1,19 @@
+	
+	ferret -nojnl
+
+	use data_name.nc  !! give the proper data name
+
+	sh data  !! for show/display data
+
+	sh grid var   !! for view the grid (mention variable name ("var") as in the 'sh data')
+
+	contour/fill/x=start:end/y=start:end/k=#value/l=#value mention_parameter !! x is longitude, y is latitude
+
+	go fland 5       !! for fill land area with colour, can mention colour-VIBGYOR
+
+	go land thick !! for thickening the land boarder
+
+	frame/file=name.gif  !! to save the ouput image as gif
+
+
+	q !! to quit the terminal

@@ -1,0 +1,16 @@
+
+
+	use wind_climatology.nc
+	set win/clear
+	!palette rainbow_rgb
+	ppl DFLTFNT @DR
+	PPL AXLSZE 0.16 0.016
+
+	let wmag = (ux^2+vy^2)^(1/2)
+
+	fill/x=45:60/y=2:12/hlimit=45:60:3/vlimit=2:12:2/l=5/nolab/levels=(-inf)(2,14,1)(inf) wmag
+	go fland 5
+	go land thick
+	vector/ov/x=45:60/y=2:12/hlimit=45:60:3/vlimit=2:12:2/l=5/xs=2/ys=2/len=14/nokey/nolab ux, vy
+
+	frame/file=Wind_Ed_b.jpg

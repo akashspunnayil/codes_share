@@ -1,0 +1,26 @@
+ODV is copyrighted is allowed to be used free of charge for non-commercial, non-military research and teaching purposes only. 
+If you use the software for your scientific work, please reference Ocean Data View in your publications as follows: 
+Schlitzer, R., Ocean Data View, https://odv.awi.de, 2018.
+
+Go to ODV Website:http://odv.awi.de
+Please Register with your details and create an account. This also enables to access data.
+Download the latest version according to your OS.
+
+For windows click, download and keep clicking next to install. Its very straightforward.
+
+
+For ubuntu version:
+
+1. Download the run_odv file and the odv_...linux-amd64_ubuntu file....gz (corresponding your ubuntu version) 
+2. Extract the .gz file to a new folder named ODVhome in home, where you would like to install ODV. It will build directories automatically
+3. Go the extracted folder ..ODVhome/bin_linux-amd64/odv from terminal. This is where the installation files odv is located.
+4. Type ‘chmod u+x odv’ to give permission to the file odv
+5. Type ‘./odv’ to run odv
+
+If odv fails to run after steps 4 and 5,
+1. Copy paste the file run_odv to the desktop
+2. Open terminal from desktop and type ‘pwd’ in terminal. Copy this path.
+3. Type ‘gedit run_odv’ in terminal. After the line ODV HOME= paste the copied location of the run_odv file.  
+4. Close gedit
+5. From terminal type ‘chmod u+x run_odv’
+6. Then type ‘./run_odv’

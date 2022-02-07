@@ -1,0 +1,1 @@
+rename -v 's/temp2m/surfPressure/g' *.py

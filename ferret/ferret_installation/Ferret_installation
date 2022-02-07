@@ -1,0 +1,75 @@
+
+
+! Many thanks to http://researchwithlinux.blogspot.com for the easy installation procedures in Malayalam. 
+! Please checkout http://researchwithlinux.blogspot.com/2014/08/how-to-install-ferret_56.html
+
+Ferret install ചെയ്യുന്നതിന് മുൻപായി നിങ്ങളുടെ Ubuntu 32 bit  ആണോ  64 bit ആണോ എന്ന് നോക്കേണ്ടതുണ്ട് (uname -m). ഇനി അതിനനുസരിച്ച് താഴെ നിന്ന്  4 file കളും ഡൌണ്‍ലോഡ് ചെയ്യണം .
+
+
+
+                    32 bit                                                                                
+
+    Ferret Executables
+    Ferret Environment
+    Ferret Datasets
+    install.sh
+
+	        64 bit
+
+    Ferret Executables
+    Ferret Environment
+    Ferret Datasets
+    install.sh
+
+
+ഇനി ഇവയെല്ലാം നിങ്ങളുടെ home folder ൽ ferret എന്നൊരു ഫോൾഡർ ഉണ്ടാക്കി അതിലേക്ക് കോപ്പി ചെയ്യണം ..( വേണമെങ്കിൽ നിങ്ങൾക്ക് അതിന്റെ ഒരു Copy പിന്നീടുള്ള ആവശ്യങ്ങൾക്ക് വേണ്ടി നിങ്ങളുടെ Hard disk ലേക്ക് മാറ്റി വയ്ക്കുന്നത് നന്നായിരിക്കും ) .
+
+അതിൽ  install.sh എന്ന Fileകണ്ടില്ലേ അത് തുറന്നു നോക്കൂ . ചിത്രം നോക്കൂ
+
+
+ഇനി അതിലുള്ള DIR=/home/ocean/ferret എന്ന line Edit ചെയ്തു ,ferret ന്റെ instalation Folder ന്റെ Path set ചെയ്യണം .ഇതിനായി ocean എന്നത് നിങ്ങളുടെ username (whoami ) ആയി replace ചെയ്താൽ മതി .ഇനി അത് save ചെയ്യുക .ഇനി install.sh എന്ന script file ന്റെ permission  മാറ്റണം അതിനായി terminal, ferret എന്ന Folder ൽ തുറന്ന്  താഴെ കാണുന്നപോലെ type ചെയ്തു Enter ചെയ്യുക.
+
+    chmod u+rwx install.sh
+
+ അതിനു ശേഷം sudo ./install.sh എന്ന് type ചെയ്തു install.sh എന്ന script file run ചെയ്യുക
+
+script file run ചെയ്യുമ്പോൾ നിങ്ങളുടെ terminal ലിൽ മുകളിൽ  കൊടുത്ത ചിത്രത്തിലേതുപോലെ നിങ്ങളുടെ choice select ചെയ്യാൻ പറയും .ആദ്യം option 1 select ചെയ്യുക .താഴെ ഉള്ള ചിത്രം ശ്രദ്ദിക്കുക !
+
+option 1 select ചെയ്താൽ മുകളിൽ മുകളിൽ  കൊടുത്ത ചിത്രത്തിലേതുപോലെ install ചെയ്യേണ്ട folder ന്റെ location ചോദിക്കും . /usr/local/ferret എന്ന് കൊടുക്കുക.താഴെ ഉള്ള ചിത്രം ശ്രദ്ദിക്കുക 
+
+ 
+location /usr/local/ferret എന്ന് കൊടുത്താൽ താഴെ ഉള്ള ചിത്രത്തിലേതുപോലെ  instalation നു വേണ്ടി download ചെയ്ത file ഉകളുടെ  location ചോദിക്കും .
+ 
+File കൾ നിങ്ങളുടെ home directory യിലെ ferret എന്ന folder ഇൽ ആണെങ്കിൽ അതിന്റെ path കൊടുക്കണം .ഇവിടെ files  ocean എന്ന് പേരുള്ള എന്റെ Home directory യിലെ ferret എന്ന folder ഇൽ ആണു.അതുകൊണ്ടാണ് ഞാൻ /home/ocean/ferret എന്ന് കൊടുത്തത് .നിങ്ങളുടെ files എവിടെ ആണോ അവിടെക്കുള്ള correct path കൊടുക്കണം .അല്ലെങ്കിൽ ഇൻസ്റ്റോൾ ആവില്ല .
+ 
+file ഉകളുടെ location കൊടുത്താൽ അടുത്തതായി താഴെ ഉള്ള ചിത്രത്തിലേതുപോലെ വീണ്ടും നിങ്ങളുടെ choice ചോദിക്കും .ഇപ്പോൾ option  2 select ചെയ്യുക .
+ 
+Option 2 choose ചെയ്താൽ താഴെ കൊടുത്ത ചിത്രത്തിലേത് പോലെ എവിടെക്കാണ്‌ മുന്നേ നമ്മൾ ferretന്റെ fer_environment.tar.gz എന്ന file extract ചെയ്തത് എന്ന് ചോദിക്കും . 
+ 
+/usr/local/ferret എന്ന location ആണല്ലോ നമ്മൾ install ചെയ്യാൻ വേണ്ടി കൊടുത്തത് .അതുകൊണ്ട് ഇതേ location തന്നെ ഇവിടെയും കൊടുക്കുക .താഴെ ഉള്ള ചിത്രം നോക്കുക .
+ 
+/usr/local/ferret എന്ന path  കൊടുത്താൽ അടുത്തതായി താഴെ കൊടുത്ത ചിത്രത്തിലേത് പോലെ എവിടെക്കാണ്‌ മുൻപ്  ferret ന്റെ fer_dsets.tar.gz എന്ന file extract ചെയ്തത് എന്ന് ചോദിക്കും.
+ 
+അത് /usr/local/ferret/fer_dsets എന്ന location നിലേക്ക് ആണ് .അതുകൊണ്ട് അവിടെ താഴെ കൊടുത്ത ചിത്രത്തിലേതുപോലെ  /usr/local/ferret/fer_dsets എന്ന് കൊടുക്കണം .
+ 
+അതിനു ശേഷം താഴെ ഉള്ള ചിത്രത്തിലേത് പോലെ ferret install ചെയ്യുന്നതിന്റെ ഭാഗമായി ഉണ്ടാക്കുന്ന ferret ന്റെ path file കൾ ഏതു folder ഇൽ വേണം എന്ന് ചോദിക്കും .
+ 
+അത് /usr/local/ferret എന്ന് കൊടുക്കണം .
+ 
+അതിനു ശേഷം ferret_ path link option choose ചെയ്യാനായി പറയും .
+ 
+അതിനു ശേഷം link to ferret_paths .sh എന്ന option select ചെയ്യാനായി  " s " എന്ന letter enter ചെയ്യുക .താഴെ കൊടുത്ത ചിത്രം ശ്രദ്ദിക്കുക !
+ 
+അതിനു ശേഷം terminal ലിൽ വീണ്ടും നിങ്ങളുടെ choice ചോദിക്കും .ferret install ആയതു കൊണ്ട്  3 എന്ന option enter ചെയ്തു ,installation process ഇൽ നിന്നും exit ചെയ്യാം
+
+ 
+ferret install ആയതു കൊണ്ട് .താഴെ കാണിച്ചിരിക്കുന്നത് പോലെ 3 എന്ന option enter ചെയ്തു ,installation process ഇൽ നിന്നും exit ചെയ്യാം 
+ 
+Exit  ചെയ്താൽ താഴെ കാണുന്ന പോലെ terminal  നിങ്ങളുടെ directory യിലേക്ക് പോകുന്നത് കാണാം .ഇപ്പോൾ ferret install ആയിട്ടുണ്ടാകും
+ഇനി install ചെയ്ത ferret work ചെയ്യണമെങ്കിൽ ഇത്തിരി ജോലി കൂടെ ഉണ്ട് .അതിനായി ferret ന്റെ path set ചെയ്യണം .അതിനായി നിങ്ങളുടെ Home Directory യിൽ ഉള്ള .bashrc എന്ന file തുറന്നു താഴെ കൊടുത്ത commands copy ചെയ്തു അതിൽ Paste ചെയ്യുക . .bashrc hidden file ആണ് അതുകൊണ്ട് ഒന്നെങ്കിൽ ctrl + H ഉപയോഗിച്ച് hidden file കാണാം ,അല്ലെങ്കിൽ terminal Home folder ല്‍ തുറന്നതിനു ശേഷം gedit .bashrc എന്ന് type ചെയ്താലും .bashrc തുറന്നു വരും
+
+    #Ferret_settings_open
+    source /usr/local/ferret/ferret_paths
+    #Ferret_settings_close
+
+Paste  ചെയ്തതിനു ശേഷം അത് സേവ്  ( Cntrl+s ) ചെയ്യണം  . അതിനു ശേഷം computer logout ചെയ്തു വീണ്ടും കയറുകയോ അല്ലെങ്കിൽ terminal ഇൽ source .bashrc എന്ന് type ചെയ്യുകയോ വേണം .ഇനി terminal ലിൽ ferret  എന്ന് type ചെയ്ത്  ferret   തുറന്നു വരുന്നുണ്ടെന്നു നോക്കി  ferret install ആയതായി ഉറപ്പുവരുത്താം 

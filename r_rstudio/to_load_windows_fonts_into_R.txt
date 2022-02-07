@@ -1,0 +1,4 @@
+windowsFonts()
+library(extrafont)
+font_import()
+loadfonts(device = "win")

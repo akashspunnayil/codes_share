@@ -1,0 +1,59 @@
+!-------Example : JJA seasonal mean from monthly data-----------
+!
+\ cancel mode verify
+! Drawbacks : Data should start at January of a year. Otherwise
+!             "yr_months" variable should be modified accordingly. 
+!
+! monthly navy winds : 16-JAN-1982 to 17-DEC-1992
+!-----------------------------------------------------------
+
+     use monthly_navy_winds
+ 
+     ! create a mask such that only JJA is valid and all other months
+     !    are set to missing value
+
+     let L_indx    = L[GT=uwnd]
+     let yr_months = L_indx- 12*INT((L_indx-1)/12) 
+     list yr_months
+
+     ! JJA -->  L is 6-8
+
+     let mask_other_months = IF yr_months GT 5 AND yr_months LT 9 THEN 1
+     list yr_months, mask_other_months
+
+     ! Apply the mask
+
+     let uwnd_masked = uwnd[d=1] * mask_other_months
+     list/x=60/y=10 uwnd_masked 
+
+     ! Club the JJA values together
+
+     let uwnd_compr  = COMPRESSL(uwnd_masked)
+     list/x=60/y=10 uwnd_compr
+
+     ! 1982-1992 --> 11 years --> 11*3=33 data points
+     ! we need to average this data points in pairs of 3 to find the
+     !  seasonal mean. Easy way is to use two abstract axes, one
+     !  with 33 points (ranging from 1-33) and another one with
+     !  11 points (ranging from 2-32) and regrid using @AVE.
+
+     define axis/t=1:33:1 t33
+     let uwnd_jja_all = uwnd_compr[gt=t33@ASN] 
+     list/x=60/y=10 uwnd_jja_all
+ 
+     define axis/t=2:32:3 t11  ! for the exact seasonal mean
+     let uwnd_jja_av  = uwnd_jja_all[gt=t11@AVE]
+
+     ! now assign a proper yearly time axis defined over 1982-1992
+     !  here we dont need any interpolation but the grid change
+     !  ..so use @ASN regridding
+
+     define axis/t=1982:1992:1/units=years tyear
+     let uwnd_jja  = uwnd_jja_av[gt=tyear@ASN]
+     list/x=60/y=10 uwnd_jja ! 6.36 7.99 7.12  8.51 9.46 9.32
+     set var/title="JJA Seasonal Mean UWND"/units="m/s" uwnd_jja
+     
+     ! save to a NetCDF file for future use
+
+     ! sp rm -f uwnd_jja_mean.nc
+     ! save/file=uwnd_jja_mean.nc/APPEND uwnd_jja

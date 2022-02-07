@@ -1,0 +1,69 @@
+
+conda update conda
+conda update --all
+conda update -n ENVIRONMENT --all ! Here ENVIRONMENT can be any environment created inside conda eg: FERRET
+
+
+conda config --show-sources (if no conda-forge and scitools channel showing);
+conda config --add channels conda-forge
+conda config --add channels scitools
+conda config --set channel_priority strict
+##
+
+## pyferret
+conda update --all
+Required packages that may not already be installed:
+
+    numpy or python-numpy (NumPy)
+    libgfortran (Fortran library; if you install SciPy, it will be installed)
+    pyside2, pyside, pyqt, python-qt5, python-qt4, PyQt5, or PyQt4 (Python bindings for Qt; may already be installed)
+
+Highly recommended but optional packages:
+
+    scipy or python-scipy (SciPy)
+    pyshp or python-pyshp (PyShp for shapefile functions)
+
+conda create -n pyferret -c conda-forge pyferret ferret_datasets --yes
+##
+
+## cdo
+conda update --all
+conda install -c conda-forge cdo
+conda install python-cdo
+##
+
+conda install -c anaconda xarray
+conda install -c conda-forge matplotlib
+pip3 install netcdf4
+
+## cartopy
+conda install -c conda-forge scipy
+pip3 install geos (dependencies)
+pip3 install cython (dependencies)
+pip3 install numpy (dependencies)
+pip3 install shapely (dependencies)
+pip3 install pyshp (dependencies)
+pip3 install six (dependencies)
+pip3 install proj (dependencies)
+sudo apt-get install libproj-dev proj-data proj-bin  
+sudo apt-get install libgeos-dev  
+sudo pip install cython  
+sudo pip install cartopy
+conda install -c conda-forge cartopy (pls ignore failed frozen solve message, this process will take several minutes)
+conda config --add channels scitools
+conda update --all
+conda install -c scitools/label/archive cartopy (pls wait, process will takes longer time)
+git clone https://github.com/SciTools/cartopy.git
+cd cartopy
+ Uncomment the following to specify non-standard include and library paths
+ python setup.py build_ext -I/path/to/include -L/path/to/lib
+python setup.py install
+##
+
+conda install -c conda-forge gsw
+conda install -c conda-forge basemap
+conda install -c conda-forge basemap-data-hires
+
+
+conda update --all
+

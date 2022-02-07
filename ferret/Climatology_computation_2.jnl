@@ -1,0 +1,28 @@
+	use soda_dive.nc  ! this data contains variable "dive" 
+!  	Define daily and climatological axis...
+
+	define axis/t="15-JAN-1990 00:00":"15-DEC-2010 00:00":1/units=months/calender=NOLEAP	    tmonth     !This is the axis of the data sets soda_dive.nc
+	define axis/t="15-JAN-1900:00:00":"15-DEC-1900:00:00":1/units=months/calender=NOLEAP/MODULO tclim     ! /This is the  Climatological axis axis   
+	
+
+	let   diver = dive[gt=tmonth]  ! define new varible "diver" simply by assigning dive tmonth axis
+	
+
+	let  dive_clim 	= diver[gt=tclim@MOD]!From diver we have make climatology
+	
+		
+	
+	set mem/siz=300
+
+	set variable/title="Divergence"/units="per sec square"   dive_clim
+	
+	
+
+	save/file=dive_wclim.nc  dive_clim
+
+
+	
+
+	
+
+

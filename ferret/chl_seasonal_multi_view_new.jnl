@@ -1,0 +1,92 @@
+	
+	use chl_occci_clim.nc ! chl_clim
+	
+	set reg/x=40:80/y=-5:30
+	set mem/size=1000
+
+	CANCEL VIEWPORT
+	SET WINDOW/CLEAR
+	set win/asp=1
+	!set mode metafile
+	go multi_view 2,2,0.34,0.12,0.03,0.36,0.1,0.03,,0.1,0.1
+	!PALETTE rainbow	
+	ppl shaset reset
+	ppl DFLTFNT @TR
+	PPL AXLSZE 0.16,0.16  ! x-axis , y-axis labels size 
+	PPL LABSET 0.16,0.12,0.12,0.12 ! sizes in order of: title,xlab,ylab,moveable labels
+	ppl color 6 100,100,100
+
+	let chl2=chl_clim[l=1:2@ave]
+	let chl1=chl2+chl_clim[l=11:12@ave]
+	let chlnem=(chl1+chl2)/2
+set view v11;ppl axlabp 0,-1;ppl tics 0.2,0.2,0.2,0.2;fill/hlimit=48:80:5/vlimit=-5:30:5/nokey/nolab/levels=(0,3,0.12)(inf)/axes=1,1,1,1 chlnem;go fland 5;go land thick;label 78,28,5,.3,.2 @tr @p6 (A)!NEM
+
+go box 50 65 12 26! NWAS 13 will draw a box in Arabian sea  with thick black line and the 13 can be change to change color
+label 61,18,5,.30,.20 @tr @p6 NWAS
+
+go box 65 78 12 26! NEAS
+label 75,18,5,.30,.20 @tr @p6 NEAS
+
+go box 50 65 0 12! SWAS
+label 61,6,5,.30,.20 @tr @p6 SWAS
+
+go box 65 78 0 12! SEAS
+label 75,6,5,.30,.20 @tr @p6 SEAS
+
+	let chlswm=chl_clim[l=6:8@ave]
+set view v12;ppl axlabp 0,0; ppl tics 0.2,0.2,0.2,0.2;fill/hlimit=48:80:5/vlimit=-5:30:5/nokey/nolab/levels=(0,3,0.12)(inf)/axes=1,1,1,1 chlswm;go fland 5;go land thick;label 78,28,5,.3,.2 @tr @p6 (B) !SWM
+
+
+go box 50 65 12 26! NWAS 13 will draw a box in Arabian sea  with thick black line and the 13 can be change to change color
+label 61,18,5,.30,.20 @tr @p6 NWAS
+
+go box 65 78 12 26! NEAS
+label 75,18,5,.30,.20 @tr @p6 NEAS
+
+go box 50 65 0 12! SWAS
+label 61,6,5,.30,.20 @tr @p6 SWAS
+
+go box 65 78 0 12! SEAS
+label 75,6,5,.30,.20 @tr @p6 SEAS
+
+	let chlprem=chl_clim[l=3:5@ave]
+set view v21;ppl axlabp -1,-1;ppl tics 0.2,0.2,0.2,0.2;fill/hlimit=48:80:5/vlimit=-5:30:5/nokey/nolab/levels=(0,3,0.12)(inf)/axes=1,1,1,1 chlprem;go fland 5;go land thick;label 78,28,5,.3,.2 @tr @p6 (C) !PRE-MONSOON
+
+
+go box 50 65 12 26! NWAS 13 will draw a box in Arabian sea  with thick black line and the 13 can be change to change color
+label 61,18,5,.30,.20 @tr @p6 NWAS
+
+go box 65 78 12 26! NEAS
+label 75,18,5,.30,.20 @tr @p6 NEAS
+
+go box 50 65 0 12! SWAS
+label 61,6,5,.30,.20 @tr @p6 SWAS
+
+go box 65 78 0 12! SEAS
+label 75,6,5,.30,.20 @tr @p6 SEAS
+
+	let chlpostm=chl_clim[l=9:10@ave]
+set view v22;ppl axlabp -1,0;ppl tics 0.2,0.2,0.2,0.2;fill/set_up/hlimit=48:80:5/vlimit=-5:30:5/nolab/levels=(0,3,0.12)(inf)/axes=1,1,1,1 chlpostm; ppl shakey 1,1,0.18,0,1,2,5.8,6.2,1.3,11;ppl fill;go fland 5;go land thick;label/nouser 5.2,10,0,0,0.2 @tr @p2 (mg/m^3);label 78,28,5,.3,.2 @tr @p6 (D)!POST-MONSOON
+
+
+
+go box 50 65 12 26! NWAS 13 will draw a box in Arabian sea  with thick black line and the 13 can be change to change color
+label 61,18,5,.30,.20 @tr @p6 NWAS
+
+go box 65 78 12 26! NEAS
+label 75,18,5,.30,.20 @tr @p6 NEAS
+
+go box 50 65 0 12! SWAS
+label 61,6,5,.30,.20 @tr @p6 SWAS
+
+go box 65 78 0 12! SEAS
+label 75,6,5,.30,.20 @tr @p6 SEAS
+
+!cancel mode metafile
+!sp Fprint -o chl_rcp60.eps -p portrait -l cps metafile.plt;
+!sp rm metafile*
+
+
+frame/file=chl_Seasonal_AS.tiff /ypixels=4000
+
+

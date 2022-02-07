@@ -1,0 +1,73 @@
+
+
+sudo apt-get update -y && sudo apt-get dist-upgrade && sudo apt-get full-upgrade
+sudo apt-get install netcdf-bin &&
+sudo apt-get install -y libnetcdf-dev &&
+sudo apt-get install -y libnetcdf-dev libnetcdff-dev &&
+sudo apt-get install -y default-jre && 
+sudo apt-get install -y python-numpy &&
+sudo apt-get install -y python-pyshp &&
+sudo apt-get install -y python-qt4 &&
+sudo apt-get install -y libqt4-dev &&
+sudo apt-get install -y curl &&
+sudo apt-get install -y libcurl4-openssl-dev &&
+sudo apt-get install -y libcurl3-dev &&
+sudo apt-get install -y libcurl-dev &&
+sudo apt-get install -y libsdl-pango-dev &&
+sudo apt-get install -y m4 &&
+sudo apt-get install -y build-essential &&
+sudo apt-get install -y bison flex &&
+sudo apt-get install -y python-pip &&
+sudo apt-get install -y python3-pip &&
+sudo apt-get install -y python3-cairo-dev &&
+sudo apt-get install -y openjdk-14-jre-headless &&
+sudo apt-get install -y libgfortran5 &&
+sudo apt-get install -y libreadline-dev &&
+sudo apt-get install -y libpangocairo libpangocairo-1.0-0 &&
+sudo apt-get install -y cmake &&
+sudo apt-get install -y dos2unix && #-->TO CONVERT file to unix format (command: "dos2unix file.extension")
+sudo apt-get install -y wget &&
+sudo apt-get install -y nco &&
+sudo apt-get install -y ssh rsync &&
+
+sudo ln -s /usr/bin/make /usr/bin/gmake #--> before that find location of instaled make (whereis make)
+sudo ln -s /usr/lib/x86_64-linux-gnu/cmake /usr/lib/x86_64-linux-gnu/gmake # --> before that find location of instaled cmake (whereis cmake)
+sudo ln -s libreadline.so.7.0 libreadline.so.6 #-->only if python install crashes due to libreadline
+sudo ln -s libhistory.so.8.0 libhistory.so.6 #-->only if python install crashes due to libhistory
+
+sudo pip3 install numpy scipy && 
+sudo pip install numpy scipy &&
+sudo apt-get install -y numpy scipy 
+
+sudo apt-get install -y pyside2 pyside pyqt python-qt5 python-qt4 PyQt5 PyQt4
+sudo pip3 install pyside2 pyside pyqt python-qt5 python-qt4 PyQt5 PyQt4
+sudo pip install pyside2 pyside pyqt python-qt5 python-qt4 PyQt5 PyQt4
+
+	sudo apt-get install gcc gfortran
+
+	pyferret (install_pyferret.sh)
+	conda create -n pyferret -c conda-forge pyferret ferret_datasets --yes
+	conda install -c conda-forge jupyterlab
+
+	sudo apt-get install -y cdo
+
+sudo apt-get install octave
+octave --force-gui
+octave
+sudo apt-get install octave-octcdf
+
+sudo dpkg --list | egrep -i --color 'linux-image|linux-headers' --> view installed kernels
+
+sudo apt-get autoremove #--> after all install to remove used packages
+
+sudo apt-get install openssh-server openssh-client #! Ubuntu servers not come with default ssh server client, so install them
+
+sudo apt-get install libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6 #! FOR MINICONDA
+
+
+
+
+
+
+
+

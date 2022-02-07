@@ -1,0 +1,6 @@
+	
+	use ekman_ann.nc !! var=mev
+	cancel viewports
+	let mev2=mev[x=64:78@ave]
+	fill/y=7.5:15/l=1:25/nolab/levels=(-inf)(-1100,-100,100)(inf) mev2
+	frame/file=mev_ann_hovemoller.gif

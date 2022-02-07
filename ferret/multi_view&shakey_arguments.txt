@@ -1,0 +1,29 @@
+
+!                          $1       $2      $3      $4       $5     $6       $7
+! USAGE :  go multi_view [rows],[columns],[xsize],[xstart],[xgap],[ysize],[ystart]
+!                        [ygap],[view_name_prefix],[CB_xsize],[CB_ysize] 
+!                           $8         $9              $10        $11
+
+
+
+	!The arguments to SHAKEY are 
+                 $1       $2      $3        $4         $5       $6       $7     $8     $9     $10 
+	!SHAKEY do_key, orient, klab_siz, klab_inc, klab_dig, klab_len, kx_lo, kx_hi, ky_lo, ky_hi
+
+	!do_key=    0 if the key will not be displayed, 1 if it will (0)
+	!orient=    0 for horizontal, 1 for vertical (0)
+	!klab_size= if non-zero: size of key label characters in inches (0)
+	!klab_inc=  if non-zero: every klab_inc key level is labelled (0)
+	!klab_dig=  number of sig digits in the key (3)
+	!klab_len=  max characters in a key label (9)
+	!kx_lo=     X coord of left side of key in inches
+	!kx_hi=     X coord of right side of key in inches
+	!ky_lo=     Y coord of bottom of key in inches
+	!ky_hi=     Y coord of topof key in inches
+
+	
+	!label/nouser -1,11,0,0,0.33 @tr @p2 (RCP 4.5)
+	!label/nouser xposition, yposition, left margin,right margin,font size @tr=font style @ p2=font color "my label" 
+
+
+	!! axes=0,0,0,0 > top, bottom, left, right

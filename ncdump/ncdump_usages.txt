@@ -1,0 +1,35 @@
+
+
+To look at just the header information (also called the schema or metadata):
+
+$ ncdump -h mslp.nc
+
+
+
+To look at header and coordinate information, but not the data:
+
+$ ncdump -c mslp.nc
+
+
+
+To look at all the data in the file, in addition to the metadata:
+
+$ ncdump mslp.nc
+
+
+
+To look at a subset of the data by specifying one or more variables:
+
+$ ncdump -v lat,time mslp.nc
+
+
+
+To see times in human-readable form:
+
+$ ncdump -t -v lat,time mslp.nc
+
+
+
+To look at what kind of netCDF data is in the file (classic, 64-bit offset, netCDF-4, or netCDF-4 classic model):
+
+$ ncdump -k mslp.nc

@@ -1,0 +1,8 @@
+
+	use Elnino_1957_1958.nc
+
+	define axis/EDGES/t=15-jan-1957:15-dec-1958:1/unit=year tyear !! defining axis for annual mean
+
+	let  Elnino_annual = temp[gt=tyear@ave]  !! averaging to Elnino_annual(a new variable name for averaged annual elnino)
+
+	save/file= Elnino_annual_mean.nc Elnino_annual !! save file to Elnino_annual_mean.nc

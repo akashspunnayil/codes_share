@@ -1,0 +1,131 @@
+
+!!!
+!!! PyROMS python3 installation via miniconda3
+!!!
+
+conda activate
+ 1149  conda create -n pyroms python=3
+ 1150  conda install netcdf4
+ 1151  conda activate pyroms
+ 1152  clear
+ 1153  conda list
+ 1154  conda install numpy scipy matplotlib
+ 1155  
+ 1156  conda install netcdf4 
+ 1158  conda install pip3
+ 1159  conda install pip
+ 1160  
+ 1164  wget http://sourceforge.net/projects/lpsolve/files/lpsolve/5.5.2.0/lp_solve_5.5.2.0_source.tar.gz
+ 1165  tar -xvf lp_solve_5.5.2.0_source.tar.gz 
+ 1166  clear
+ 1167  ls
+ 1168  git clone https://github.com/chandu-atina/lp_solve_python_3x.git
+ 1169  ls
+ 1170  cd lp_solve_
+ 1171  cd lp_solve_python_3x/
+ 1172  ls
+ 1173  cp extra/ ../lp_solve_5.5/
+ 1174  cp -r extra/ ../lp_solve_5.5/
+ 1175  ls
+ 1176  cd ..
+ 1177  cd lp_solve_5.5/
+ 1178  ls
+ 1179  clear
+ 1180  ls
+ 1181  cd extra/
+ 1182  ls
+ 1183  cd ..
+ 1184  ls
+ 1185  clear
+ 1186  ls
+ 1187  cd lpsolve55/
+ 1188  sh ccc
+ 1189  wget https://groups.google.com/group/prismmodelchecker/attach/3586984674e863/fix-lpsolve-compilation.patch?part=0.1&authuser=0&view=1
+ 1190  ls
+ 1191  gedit fix-lpsolve-compilation.patch\?part\=0.1 
+ 1192  mv 'fix-lpsolve-compilation.patch?part=0.1' fix-lpsolve-compilation.patch
+ 1193  patch -p1 < /home/nerci/lp_solve_5.5/lpsolve55/fix-lpsolve-compilation.patch (give 'ccc' to all prompt)
+ 1194  conda list
+ 1195  sh ccc
+ 1196  cd ..
+ 1197  cd extra/Python/
+ 1198  ls
+ 1199  cd ../../
+ 1200  ls
+ 1201  cd ~/lp_solve_5.5/extra/Python
+ 1202  clear
+ 1203  ls
+ 1204  gedit setup.py (edit paths of lpsolve55 if needed)
+ 1205  cd ../../lpsolve55/bin/ux64
+ 1206  ls
+ 1207  cd ~/lp_solve_5.5/extra/Python
+ 1208  clear
+ 1209  ls
+ 1210  python3 setup.py install
+ 1211  cd ~
+ 1212  ls
+ 1213  git clone https://github.com/ESMG/pyroms.git
+ 1214  clear
+ 1215  ls
+ 1216  pip install -e pyroms/pyroms
+ 1217  pip install -e pyroms/pyroms_toolbox
+ 1218  pip install -e pyroms/bathy_smoother
+ 1219  python3
+ 1220  sudo apt install python3-mpltoolkits.basemap
+ 1221  conda python3-mpltoolkits.basemap
+ 1222  conda install python3-mpltoolkits.basemap
+ 1223  conda install basemap
+ 1224  conda update conda
+ 1225  clear
+ 1226  python3
+ 1227  conda list
+ 1228  conda install basemap
+ 1229  python3
+ 1230  python -m pip install -U matplotlib
+ 1231  python3
+ 1232  python -m pip uninstall matplotlib
+ 1233  python -m pip install -U matplotlib
+ 1234  python3
+ 1235  conda install -c conda-forge basemap-data-hires
+ 1236  clear
+ 1237  python3
+ 1238  sudo apt-get install libgeos-3.5.0
+ 1239  sudo apt-get install libgeos
+ 1240  conda install libgeos-3.5.0
+ 1241  conda install libgeos
+ 1242  conda search libgeos
+ 1243  conda search libgeos*
+ 1244  conda search *libgeos*
+ 1245  pip install https://github.com/matplotlib/basemap/archive/master.zip
+ 1246  python3 (to confirm pyroms installation)
+       import pyroms
+       import pyroms_toolbox
+       import bathy_smoother
+ 1247  cd pyroms/pyroms/external/scrip/source/ (Install scrip)
+ 1248  ls
+ 1249  conda info | grep "active env location"
+ 1250  export PREFIX=/home/nerci/miniconda3/envs/pyrom
+ 1251  export PREFIX=/home/nerci/miniconda3/envs/pyroms
+ 1252  make DEVELOP=1 PREFIX=$PREFIX install
+ 1253  conda install -c conda-forge netcdf-fortran
+ 1254  make DEVELOP=1 PREFIX=$PREFIX install
+ 1255  python3 (to confirm pyroms installation)
+       import pyroms
+       import pyroms_toolbox
+       import bathy_smoother
+
+
+UNINSTALL PYROMS
+# Run from any directory in the same environment as you installed
+# and use the package name
+$ pip uninstall pyroms
+$ pip uninstall pyroms_toolbox
+$ pip uninstall bathy_smoother
+
+# Start in the directory into which you cloned pyroms and cd to the SCRIP
+# source directory
+$ cd pyroms/pyroms/external/scrip/source/
+
+# Remove with make.
+$ make DEVELOP=1 uninstall
+

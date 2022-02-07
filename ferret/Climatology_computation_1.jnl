@@ -1,0 +1,30 @@
+	use soda_SST.nc  !!  variable is  "SST" 
+
+
+	define axis/t="15-JAN-2000 00:00":"15-DEC-2010 00:00":1/units=months/calender=NOLEAP	    tmonth     !! define data axis soda_SST.nc
+
+
+	define axis/t="15-JAN-1900:00:00":"15-DEC-1900:00:00":1/units=months/calender=NOLEAP/MODULO tclim     !! Define Climatological axis    
+	
+
+	let   SST_CLIM = SST[gt=tmonth]     !! define new varible "SST_CILM" and then assign variable (SST) and data time axis (tmonth)
+	
+
+	let  SST_climatology 	= SST_CLIM[gt=tclim@MOD]          !!Define SST_climatology as new data variable
+	
+		
+	
+	set mem/siz=400  !! Setting memory
+
+	set variable/title="SST CLIM"/units="Degree Celcius"   SST_CLIM     !! Setting variable title and units carefully
+	
+	
+
+	save/file=SODA_SST_CLIM.nc  SST_CLIM   !! saving climatolgy file as another NC file 
+
+
+	
+
+	
+
+

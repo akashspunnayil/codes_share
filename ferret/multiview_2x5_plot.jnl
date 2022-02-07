@@ -1,0 +1,39 @@
+	use Nitrate_Clim.nc
+	
+set win/asp=.65
+set window/clear
+set mode metafile
+go multi_view 2,5,0.17,0.05,0.01,0.4,0.1,0.01,,.02,.02 # check multi_view&shakey_arguments.txt
+ppl shaset reset
+ppl DFLTFNT @DR
+PPL AXLSZE 0.16,0.16
+ppl color 6 100, 100,100
+
+
+set view v11;fill/x=65:80/y=5:25/hlimit=65:80:3/vlimit=5:25:3/l=5/nokey/nolab/levels=(0,4,.2)(inf)/axes=0,0,1,0 ngp;go fland 5;go land thick;label 78.5,22,5,.3,.2 @tr @p6 MAY
+
+set view v12;fill/x=65:80/y=5:25/hlimit=65:80:3/vlimit=5:25:3/l=6/nokey/nolab/levels=(0,4,.2)(inf)/axes=0,0,0,0 ngp; go fland 5; go land thick;label 78.5,22,5,.3,.2 @tr @p6 JUN
+
+set view v13;fill/x=65:80/y=5:25/hlimit=65:80:3/vlimit=5:25:3/l=7/nokey/nolab/levels=(0,4,.2)(inf)/axes=0,0,0,0 ngp; go fland 5; go land thick;label 78.5,22,5,.3,.2 @tr @p6 JUL
+
+set view v14;fill/x=65:80/y=5:25/hlimit=65:80:3/vlimit=5:25:3/l=8/nokey/nolab/levels=(0,4,.2)(inf)/axes=0,0,0,0 ngp; go fland 5; go land thick;label 78.5,22,5,.3,.2 @tr @p6 AUG
+
+set view v15;fill/x=65:80/y=5:25/hlimit=65:80:3/vlimit=5:25:3/l=9/nokey/nolab/levels=(0,4,.2)(inf)/axes=0,0,0,0 ngp; go fland 5; go land thick;label 78.5,22,5,.3,.2 @tr @p6 SEP
+
+set view v21;fill/x=65:80/y=5:25/hlimit=65:80:3/vlimit=5:25:3/l=10/nokey/nolab/levels=(0,4,.2)(inf)/axes=0,1,1,0 ngp; go fland 5; go land thick;label 78.5,22,5,.3,.2 @tr @p6 OCT
+
+set view v22;fill/x=65:80/y=5:25/hlimit=65:80:3/vlimit=5:25:3/l=11/nokey/nolab/levels=(0,4,.2)(inf)/axes=0,1,0,0 ngp; go fland 5; go land thick;label 78.5,22,5,.3,.2 @tr @p6 NOV
+
+set view v23;fill/x=65:80/y=5:25/hlimit=65:80:3/vlimit=5:25:3/l=12/nokey/nolab/levels=(0,4,.2)(inf)/axes=0,1,0,0 ngp; go fland 5; go land thick;label 78.5,22,5,.3,.2 @tr @p6 DEC
+
+set view v24;fill/x=65:80/y=5:25/hlimit=65:80:3/vlimit=5:25:3/l=1/nokey/nolab/levels=(0,4,.2)(inf)/axes=0,1,0,0 ngp; go fland 5; go land thick;label 78.5,22,5,.3,.2 @tr @p6 JAN
+
+set view v25;fill/x=65:80/y=5:25/hlimit=65:80:3/vlimit=5:25:3/l=2/nokey/nolab/levels=(0,4,.2)(inf)/axes=0,1,0,0 ngp;ppl shakey 1,1,0.18,,3,6,4.333,4.6,1.15,10.65;ppl fill;go fland 5;go land thick;label 78.5,22,5,.3,.2 @tr @p6 FEB;label/nouser 3.4,-.4,0,0,0.2 @tr @p2 cm
+
+cancel mode metafile
+sp Fprint -o NITR_EAS.eps -p portrait -l cps metafile.plt;
+sp rm metafile*
+
+frame/file=NITR_EAS.gif
+
+

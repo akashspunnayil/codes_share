@@ -1,0 +1,15 @@
+ 
+
+ use data.nc
+ SET REGION/X=0e:1w/Y=75:89/L=1/k=1
+ GO mp_orthographic 300 45
+ SET GRID vosaline
+ GO mp_aspect
+ LET masked_saline = vosaline * mp_mask
+ FILL/NOAX/NOLAB masked_saline, x_page, y_page
+ LABEL/NOUSER `($PPL$XLEN)*0.5`,-0.4,0,0,0.2 VOSALINE
+ 
+ GO mp_fland
+ GO mp_land
+
+

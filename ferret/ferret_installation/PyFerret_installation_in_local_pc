@@ -1,0 +1,69 @@
+
+Installing NOAA Ferret and PyFerret together in Linux
+
+Install following first (In Fedora using dnf or Ubuntu Synaptic Manager)
+PyQt4.x86_64
+PyQt5.x86_64(python-qt5.x86_64)
+gcc-gfortran.x86_64
+scipy.x86_64
+numpy.x86_64
+java-1.8.0-openjdk
+libgfortran
+libcurl
+pango
+cairo
+
+go to the link
+https://github.com/NOAA-PMEL/PyFerret/releases
+get the link of the required version of pyferret
+
+mkdir -p ~/pkgs
+cd ~/pkgs
+wget https://github.com/NOAA-PMEL/PyFerret/releases/download/v7.2.1-final/pyferret-7.2.1-RHEL7-64.tar.gz
+wget ftp://ftp.pmel.noaa.gov/ferret/pub/data/fer_dsets.tar.gz
+wget ftp://ftp.pmel.noaa.gov/ferret/pub/rhel6_64/fer_environment.tar.gz
+wget ftp://ftp.pmel.noaa.gov/ferret/pub/rhel6_64/fer_executables.tar.gz
+
+sudo mkdir -p /usr/local/pyferret
+sudo mv pyferret-7.2.1-RHEL7-64.tar.gz /usr/local/pyferret
+sudo mv fer_*tar.gz /usr/local/pyferret
+cd /usr/local/pyferret
+
+extract them all
+for f in *.gz
+do
+sudo tar -zxvf $f
+done
+
+run Finstall
+cd pyferret-7.2.1-RHEL7-64
+sudo ./bin/Finstall
+
+answer for the first query
+/usr/local/pyferret/pyferret-7.2.1-RHEL7-64
+answer for the second query
+/usr/local/pyferret
+answer for the third query
+/usr/local/pyferret
+
+type s for bash linking
+
+type python2.7 as desired version of python
+
+source /usr/local/pyferret/ferret_paths
+
+keep this path in .bashrc if needed.
+
+Now for installing ferret
+cd /usr/local/pyferret
+sudo ./bin/Finstall
+
+/usr/local/pyferret is the answer to all the questions except for ferret_paths directory put
+/usr/local directory
+
+source /usr/local/ferret_paths
+
+keep this path in .bashrc if needed
+
+Now both ferret and pyferret commands should be working.
+

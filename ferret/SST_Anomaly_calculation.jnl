@@ -1,0 +1,7 @@
+	use data.nc
+
+	let sst_avg=sst[l=2:205@ave]
+
+	let sst_anom=sst-sst_avg ! always do- > original variable minus average
+
+	save/file=sst_anom.nc sst_anom[l=2:205@ave]

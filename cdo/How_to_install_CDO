@@ -1,0 +1,11 @@
+
+
+How to install cdo in Ubuntu? 
+	sudo apt-get update && sudo apt-get install cdo
+
+How to confirm installation?
+	cdo -V
+
+Follow the following link for more details
+	https://www.devmanuals.net/install/ubuntu/ubuntu-12-04-lts-precise-pangolin/install-cdo.html
+

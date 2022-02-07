@@ -1,0 +1,5 @@
+
+
+	!! This is a linux terminal command
+
+	wget -i name.jnl  !! the name.jnl file must contain one or many downloadable data links

@@ -1,0 +1,15 @@
+	
+	!!  This is a linux terminal command not a ferret command
+	
+	wget -r -l2 -A.nc ftp://username:password@ftp.rest of link
+	
+	!! another method (yet not tried)
+
+	wget -r -l 0 ftp://username:password@ftp.rest of link
+	wget -r link
+
+	!!username and password: for ftp server
+
+	ftp.rest of link: insert main link containing several datasets
+
+	 	

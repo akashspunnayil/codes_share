@@ -1,0 +1,8 @@
+data<-read.csv(file.choose())
+sst<-ts(data$sst)
+cpue=ts(data$cpue)
+ccfvalues= ccf(sst,cpue, 19)
+ccfvalues
+#if want plot
+plot(cpue)
+plot(sst)

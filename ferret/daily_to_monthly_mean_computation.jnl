@@ -1,0 +1,10 @@
+ set data my_data  !   (giving the dataset name)
+
+ !Define a monthly axis. More on this below
+ DEFINE AXIS/T=16-jan-1930:16-dec-1979:1/UNITS=months  tmonth 
+
+ ! Then if the variable in the dataset is, say SST,
+ LET new_var = var[gt=tmonth@AVE]
+ 
+ ! save 
+ save/file=monthly.nc new_var
