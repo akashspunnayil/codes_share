@@ -3,7 +3,7 @@ git config --global user.email "akashspunnayil@gmail.com"
 git config --global push.default current # to avoid future "fatal: The current branch ferret has no upstream branch" error
 git config -l
 
-git init                                     !## personal token :  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
+git init                                     !## personal token :  save your token here if needed for future use
 
 
 !Normal procedure of adding files
