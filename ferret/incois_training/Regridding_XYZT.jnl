@@ -1,0 +1,68 @@
+!    ---- Regridding in X and Y axis ----
+
+    use etopo5
+    
+    set region/x=45:100/y=0:30
+
+    set win/asp=0.8
+    shade/palette=topo rose
+
+    show grid rose
+    
+    define axis/x=45:100:1/units=degree xax  ! define axis
+    define axis/y=0:30:1/units=degree yax    ! define axis
+
+    define grid/x=xax/y=yax grd              ! define grid
+
+    let depth = rose[g=grd]
+pause
+    shade/palette=topo depth
+pause
+   
+    set win/asp=.4
+
+    set viewport left  ; shade/palette=topo rose
+
+    set viewport right ; shade/palette=topo depth
+
+    list/x=40:50 x[gx=rose]
+    list/x=40:50 x[gx=depth]
+
+    cancel data/all
+    cancel varible/all
+    
+pause
+
+!    ---- Regridding in Z axis ------
+
+    use levitus_climatology
+
+   list z[gz=temp]
+
+pause
+
+   define axis/z=0:5000:100/units=meters zax
+   define grid/like=temp/z=zax grd
+   let tem = temp[g=grd]
+   list z[gz=tem]
+pause
+   
+   plot/x=90/y=0/vlimit=0:3000:-100 tem,temp
+
+pause
+
+!   ---- Regridding in Time ----
+
+  use AVISO_trend_monthly.nc
+
+  set win/asp=.5
+  plot ssh
+  sh grid ssh
+pause  
+  define axis/t=15-JAN-1993:15-SEP-2019:1/units=years tax
+  define grid/t=tax grd
+
+  let sla = ssh[g=grd]
+
+  set win/asp=.5
+  plot ssh,sla

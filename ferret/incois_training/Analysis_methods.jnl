@@ -1,0 +1,129 @@
+!---- Analysis Methods Using FERRET
+! Thanks to The International Training Centre for Operational Oceanography (ITCOocean), INCOIS
+
+
+  use AVISO_trend_monthly.nc
+
+!-- average ---
+
+  let ssh_average =  ssh[l=@ave] ! to calculate the average
+  list ssh_average
+
+pause
+
+! -- Standard deviation 
+
+  let ssh_std  = ssh[l=@std]
+  list ssh_std
+
+! plotting 
+  set win/asp=.5
+   plot ssh
+   go plot_swath poly/over/pal=gray/nolab ssh-ssh_std, ssh+ssh_std
+   plot/over/thick=3 ssh
+
+pause
+
+! To calculate monthly climatology
+
+  let ssh_clim = ssh[gt=month_reg@MOD]
+
+  sh grid ssh_clim
+  list ssh_clim
+
+  plot ssh_clim
+
+pause
+
+! Calculate Anomaly by removing seasonal signal
+
+   let ssh_anom = ssh - ssh_clim[gt=ssh@asn]
+
+   plot ssh,ssh_clim[gt=ssh@asn],ssh_anom
+
+pause
+   plot ssh_anom
+
+pause 
+
+! Regression
+  
+  let  p = t[gt=ssh_anom]
+  let  q = ssh_anom
+
+  go regresst
+
+  plot ssh_anom, qhat
+  label 57000,0.040,0,0,0.13  @TR@P4`slope*365*1000` mm/Year
+
+pause 
+
+! Remove trend from the data
+
+  let sla = ssh_anom - qhat
+  plot sla
+
+pause
+
+! FFT analysis
+
+! Making time axis regular
+
+  define axis/t=15-JAN-1993:15-SEP-2019:1/units=months tax
+  define grid/t=tax grd
+  let ssha = sla[g=grd]
+
+  let sla_fft = ffta(ssha[l=1:320])
+  SET VARIABLE/TITLE="Amplitude Spectrum" sla_fft
+  plot sla_fft
+  
+pause
+
+! For easier interpretation, invert the frequency axis and plot the spectrum vs period; months/cycle
+
+! Get the frequency increment used in the FFT.
+      LET FFT_nf = `sla_fft,return=lend`
+      LET FFT_nyquist = 0.5
+      LET FFT_freq1 = FFT_nyquist/ FFT_nf
+
+! Define a frequency axis.
+      DEFINE AXIS/T=`FFT_freq1`:`FFT_nyquist`:`FFT_freq1` FAXIS
+      DEFINE GRID/T=FAXIS gfftfreq
+      LET a = T[g=gfftfreq]
+
+! Define the period from the frequency axis.
+      LET per = 1./a
+
+PLOT/VS/LINE/HLIMIT=1:50/VLIMIT=0:0.0013/TITLE="Amplitude Spectrum"/SET_UP per[l=1:`FFT_nf`], sla_FFT
+
+      PPL XFOR (I3)
+      PPL XLAB Period, months/cycle
+      PPL YLAB 
+      PPL PLOT
+pause
+
+! Low pass filter 
+
+
+  let sla_filt_10 = LSL_LOWPASS( sla,     10,         9 )
+ 
+!                             data  cutoff_period  filter_span 
+
+! The filter transition region lies in the period range between N*cutoff_period/(N + cutoff_period) and N*cutoff_period/(N - cutoff_period). The filter span should be an odd integer.
+
+  plot sla_filt_10
+
+pause
+
+cancel data/all
+cancel var/all
+
+! Correlation Analysis
+
+  use coads_climatology
+
+  let p = slp[x=200,y=0]
+  let q = slp
+  go variance
+  go correlation_with_student_t_test ! using to find values above confidence level
+  fill/palette=blue_darkred/lev=(-1,1,0.1) correl

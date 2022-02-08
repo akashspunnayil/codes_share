@@ -1,0 +1,78 @@
+use/order=XYT ../Data/AVISO_monthly_2x2deg_Indo_Pacifi_1993_2019.nc
+use ../Data/AVISO_NIO_1x1deg.nc
+use ..//Data/TG/Gan_d109.nc
+use ../Data/TG/Padang_d107.nc
+
+!palette cmocean_balance
+set win/asp=.7
+fill/l=100/lev=(-inf)(-.2,.2,0.02)(inf) sla[d=1]
+go fland 5 ; go land 7
+
+pause ;\
+
+set win/asp=.7 
+fill/l=100/lev=(-inf)(-.2,.2,0.02)(inf) ssh[d=2]
+go fland 5 ; go land 7
+
+!plot/vs/over/nolab/thick=3/sym=88/color=black 39.60,-69.00
+plot/vs/over/nolab/thick=3/sym=88/color=red   73.15, -0.6870
+!plot/vs/over/nolab/thick=3/sym=88/color=green 188.3, -2.810
+plot/vs/over/nolab/thick=3/sym=88/color=blue 100.4, -1.000  
+
+!label 39.60,`-69.00+7`,0,0,0.13  @TRAntartica
+label 73.15, `-0.6870+2`,0,0,0.13 @TRGan
+!label 188.3, `-2.810+7`,0,0,0.13 @TRKanton
+label 100.4,`-1.000-2`,0,0,0.13   @TRPadang
+
+pause 
+set win/as=.4
+pl/x=73.15/y=-0.687 (sea_level[d=3,l=@sbx:7]-sea_level[d=3,l=@ave])/1000,ssh[d=2]-ssh[d=2,l=@ave] ; pause
+
+pl/x=73.15/y=-0.687/t=01-jan-2010:31-dec-2018 (sea_level[d=3,l=@sbx:7]-sea_level[d=3,l=@ave])/1000,ssh[d=2]-ssh[d=2,l=@ave] ; pause
+
+pl/x=100.4/y=-1.000/t=01-jan-2010:31-dec-2018 (sea_level[d=4,l=@sbx:7]-sea_level[d=4,l=@ave])/1000,ssh[d=2]-ssh[d=2,l=@ave] ; pause
+
+!----  Identification of Length Scales ----
+set win/as=.7
+fill/l=1 ssh[d=2] ; go fland 5 ;  go land 7
+plot/line/thick=3/over/vs/color=black {42,100},{0,0}
+plot/line/thick=3/over/vs/color=red {42,100},{5,5}
+plot/line/thick=3/over/vs/color=green {42,100},{10,10}
+
+pause 
+
+set win/asp=.6
+plot/l=1 ssh[x=42:100,y=0,d=2] ; pause
+plot/l=1 ssh[x=42:100,y=0,d=2],ssh[x=42:100,y=5,d=2] ; pause
+plot/l=1 ssh[x=42:100,y=0,d=2],ssh[x=42:100,y=5,d=2],ssh[x=42:100,y=10,d=2] ; pause
+
+!---- Propagation of information ----
+
+set win/as=.7
+fill/l=1 ssh[d=2] ; go fland 5 ;  go land 7
+plot/thick=3/over/vs/sym=88/color=black/nolab 50,0
+plot/thick=3/over/vs/sym=88/color=red/nolab 90,0
+pause ;
+set win/asp=.4
+pl/y=0/l=300:720 ssh[d=2,x=50],ssh[d=2,x=90,l=@shf:0] ; pause
+pl/y=0/l=300:720 ssh[d=2,x=50],ssh[d=2,x=90,l=@shf:7]
+
+! ---- Hovemullar diagram 
+
+set win/as=.7
+fill/l=1 ssh[d=2] ; go fland 5 ;  go land 7
+plot/line/thick=3/over/vs/color=black {50,90},{0,0}
+plot/line/thick=3/over/vs/color=red {50,90},{5,5}
+
+pause ;
+
+set win/as=1.5
+
+fill/y=5/t=01-jan-2003:30-dec-2005/x=50:90/lev=(-inf)(-.2,.2,0.02)(inf) ssh[d=2]
+plot/line/thick=3/over/vs/color=black {50,90},{20196,20020}
+pause
+
+fill/y=0/t=01-jan-2003:30-dec-2005/x=50:90/lev=(-inf)(-.2,.2,0.02)(inf) ssh[d=2] 
+plot/line/thick=3/over/vs/color=black {50,90},{20196,20236}
+pause
+
