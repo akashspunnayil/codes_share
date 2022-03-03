@@ -13,21 +13,7 @@ use woa18_pho_mon_clim_subsetIO.nc
 		
 go multi_view 2,6,0.12,.06,0.04,0.36,0.1,0.08,,.03,.025 
 
-	!PPL axlint,2,2
-	!PPL tics .115,.115,.115,.115,0,0
-	!ppl axlsze,0.1,0.1  ! x-axis , y-axis labels size 
-	!PPL DFLTFNT @TR
-	!PPL LABSET,0.16,0.12,0.12,0.12 ! sizes in order of: title,xlab,ylab,moveable labels
-	
-	
-	!PALETTE rainbow2_cmyk
-        !PALETTE blue_green_yellow
-	!PALETTE blue_darkred
-	!PALETTE rainbow
-	!PALETTE blue_orange
-	!CANCEL MODE LOGO
-
-		
+			
 !                          $1       $2      $3      $4       $5     $6       $7
 ! USAGE :  go multi_view [rows],[columns],[xsize],[xstart],[xgap],[ysize],[ystart]
 !                        [ygap],[view_name_prefix],[CB_xsize],[CB_ysize] 
@@ -35,56 +21,49 @@ go multi_view 2,6,0.12,.06,0.04,0.36,0.1,0.08,,.03,.025
 !
 !label/nouser xposition, yposition, left margin,right margin,font size @tr=font style @ p2=font color "my label" 
 
-    !ppl axlabp,-1,-1 !  Label the y-axis, on the left, x-axis on the bottom
-    !ppl axlabp,0,-1  !  Label only the y-axis, on the left
-    !ppl axlabp,0,0   !  No axis labels.
-    !ppl axlabp,-1,0  !  Label x-axis on the bottom
-
-    !axes=0,1,1,0 ! axes= , right,left,
-
-let/title="model_phosphate" pho = ECO_PHO[d=1,k=1:43]/1200
-!let/title="model_phosphate" pho = ECO_PHO[d=1,k=1:43]/(106.0*12.0)  ! as per redfield ratio
-let/title="model_phosphate" modelpho = if(pho gt 0) then pho
+let/title="model_phosphate" pho = ECO_PHO[d=1,k=1:43]
 
 let/title="woa18_phosphate" woapho = p_an[d=2]
 
 set view v11; plot/nokey/nolab/vlimits=0:1500/l=1 modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]; 
-              plot/ov/vlimits=0:1500/l=1/nolab/nokey modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]!; label 120,-100, 0, 0.2 jan; label -60,1600,0, 90, 0.2 Depth (m)
+              plot/ov/vlimits=0:1500/l=1/nolab/nokey modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]
 
 set view v12; plot/nokey/nolab/vlimits=0:1500/l=2 modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]; 
-              plot/ov/vlimits=0:1500/l=2/nolab/nokey modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]!; label 120,-100, 0, 0.2 feb
+              plot/ov/vlimits=0:1500/l=2/nolab/nokey modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]
 
 set view v13; plot/nokey/nolab/vlimits=0:1500/l=3 modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]; 
-              plot/ov/vlimits=0:1500/l=3/nolab/nokey modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]!; label 120,-100, 0, 0.2 mar
+              plot/ov/vlimits=0:1500/l=3/nolab/nokey modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]
 
 set view v14; plot/nokey/nolab/vlimits=0:1500/l=4 modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]; 
-              plot/ov/vlimits=0:1500/l=4/nolab/nokey modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]!; label 120,-100, 0, 0.2 apr
+              plot/ov/vlimits=0:1500/l=4/nolab/nokey modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]
 
 set view v15; plot/nokey/nolab/vlimits=0:1500/l=5 modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]; 
-              plot/ov/vlimits=0:1500/l=5/nolab/nokey modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]!; label 120,-100, 0, 0.2 may
+              plot/ov/vlimits=0:1500/l=5/nolab/nokey modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]
 
 set view v16; plot/nokey/nolab/vlimits=0:1500/l=6 modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]; 
-              plot/ov/vlimits=0:1500/l=6/nolab/nokey modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]!; label 120,-100, 0, 0.2 jun
-
+              plot/ov/vlimits=0:1500/l=6/nolab/nokey modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]
+              
 set view v21; plot/nokey/nolab/vlimits=0:1500/l=7 modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]; 
-              plot/ov/vlimits=0:1500/l=7/nokey modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]!; label 120,-100, 0, 0.2 jul
+              plot/ov/vlimits=0:1500/l=7/nokey modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]
 
 set view v22; plot/nokey/nolab/vlimits=0:1500/l=8 modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]; 
-              plot/ov/vlimits=0:1500/l=8/nolab/nokey modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]!; label 120,-100, 0, 0.2 aug
+              plot/ov/vlimits=0:1500/l=8/nolab/nokey modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]
 
 set view v23; plot/nokey/nolab/vlimits=0:1500/l=9 modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]; 
-              plot/ov/vlimits=0:1500/l=9/nolab/nokey modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]!; label 120,-100, 0, 0.2 sep; label/nouser 2.5,-1,0,0, 0.2 Nitrate
+              plot/ov/vlimits=0:1500/l=9/nolab/nokey modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]
 
 set view v24; plot/nokey/nolab/vlimits=0:1500/l=10 modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]; 
-              plot/ov/vlimits=0:1500/l=10/nolab/nokey modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]!; label 120,-100, 0, 0.2 oct
+              plot/ov/vlimits=0:1500/l=10/nolab/nokey modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]
 
 set view v25; plot/nokey/nolab/vlimits=0:1500/l=11 modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]; 
-              plot/ov/vlimits=0:1500/l=11/nolab/nokey modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]!; label 120,-100, 0, 0.2 nov
+              plot/ov/vlimits=0:1500/l=11/nolab/nokey modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]
 
 set view v26; plot/nokey/nolab/vlimits=0:1500/l=12 modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]; 
-              plot/ov/vlimits=0:1500/l=12/nolab/nokey modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]!; label 120,-100, 0, 0.2 dec
+              plot/ov/vlimits=0:1500/l=12/nolab/nokey modelpho[d=1,x=60:74@ave,y=10:25@ave], woapho[d=2,x=60:74@ave,y=10:25@ave]
 
-! LEGEND SETUP  (refer: https://ferret.pmel.noaa.gov/Ferret/faq/custom-legends-line-plots)            
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!        LEGEND SETUP  (refer: https://ferret.pmel.noaa.gov/Ferret/faq/custom-legends-line-plots) !!          
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 define view/x=0.7:0.8/y=0.899:0.99/axes legend
 set view legend
  
