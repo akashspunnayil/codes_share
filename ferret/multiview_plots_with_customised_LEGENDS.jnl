@@ -81,4 +81,4 @@ plot/over/vs/nolab/line=3/thick {0.2,0.5}, {0.8,0.8}; annotate/norm/siz=0.3/xpos
 
 plot/over/vs/nolab/line=4/thick {0.2,0.5}, {0.6,0.6}; annotate/norm/siz=0.3/xpos=.55/ypos=0.6/halign=-1/valign=0 "woa18_phosphate"
 
-!frame/file=phosphate_climatology_comparison_woa18.gif/ypixels=3000
+frame/file=phosphate_climatology_comparison_woa18.gif/ypixels=3000
