@@ -1,0 +1,31 @@
+###########################################################################################################################################
+## CMIP6 that all ocean variables are provided on the native grid, with vector components relative to the grid ...
+#...i.e. _gn_ in the file name means native grid. Since a lot of the ocean models in CMIP6 are using the eORCA1 grid, ...
+#...they might all have this feature of redundant rows and columns. Do an ncdump -h and scan the global attributes to see... 
+#...what the ocean grid is and/or see this page https://wcrp-cmip.github.io/CMIP6_CVs/docs/CMIP6_source_id.html which generated from the.. #...CMIP6_source_id.json file here: https://github.com/WCRP-CMIP/CMIP6_CVs. ...
+#...There is also the ES-DOC explorer site but it is not very complete yet: https://explore.es-doc.org/
+############################################################################################################################################
+# So, all CMIP6 data needed to be remap to 360x180 grid 
+############################################################################################################################################
+#
+#                  		  cdo remapbil,r360x180 in.nc out.nc
+#
+#############################################################################################################################################
+## In CNRM-CM6-1 ocean data and other data, after remap values appears to be missing. ..
+#.. So, do a ferret "list" after and before remap to ensure no data vlues are gone missing. .. 
+#.. See discussion at, https://code.mpimet.mpg.de/boards/1/topics/8676. ..
+#
+## With selindexbox these columns and rows can be removed by: ..
+#.. cdo remapbil,r360x180  -selindexbox,2,361,2,293
+#
+## If CDO detects a cyclic grid, the term "circular" appears in the grid section of "sinfon" at the longitudes. ..
+#.. cdo sinfon -selindexbox,2,361,2,293 zos_Omon_CNRM-CM6-1_abrupt-4xCO2_r5i1p1f2_gn_185009-185912.nc
+#.. after sinfon command:  lon : -179.9965 to 179.9903 degrees_east  "circular" . 
+#
+## an undocumented CDO operator "verifygrid" can be use to verify the grid information of a file. ..
+#.. cdo verifygrid zos_Omon_CNRM-CM6-1_abrupt-4xCO2_r5i1p1f2_gn_185009-185912.nc 
+#.. if the result of "verifygrid" shows "non unique cells" and cell with "unusable vertices". ..
+#.. This results in value missing after remap and interpolations
+#..
+
+			
