@@ -1,0 +1,11 @@
+rclone sync --progress --retries 20 --low-level-retries 20 source gdrive:dest
+	
+	where: 'source' should be the file/folder to upload
+		'gdrive' is the remote cloud storage configured using 'rclone config'. Here, Google Drive
+		'dest'  should be the destination folder name in the google drive
+
+
+	! 1st : download: https://rclone.org/downloads/
+	! 2nd : configure remote server/cloud storage: rclone config
+	! good to go!
+
