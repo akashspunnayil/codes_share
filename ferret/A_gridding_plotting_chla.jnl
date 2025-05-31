@@ -1,0 +1,63 @@
+!****
+set mem/size=1000
+set window/quality=high
+set win/size=0.7
+set win/asp=0.7
+!#######################################################################################################!****
+!***               GRID                                                                                 !********
+!****###################################################################################################!****
+!****
+define axis/x=76.0:76.0/npoints=1/unit=degree lon
+define axis/y=9.0:9.0/npoints=1/unit=degree lat
+
+file/var=zed zaxis.dat
+let depth = (-1)*zed
+define axis/z/name=depth/from_data/units=meters depth 
+define axis/CALENDAR=gregorian/t=01-jan-1998:01-nov-2018:1/unit=months new_month
+define grid/x=lon/y=lat/z=depth/t=new_month new_grid
+
+!****#####################################################################################################!****!****
+!****      READ AND WRITE                                                                                 !****
+!****####################################################################################################!****!****
+
+file/grid=new_grid/var="chla"/columns=1 ChlM
+set var/unit="mg C/m^3"/title="Monthly Mean Chloropyll-a" chla
+save/clobber/file=A_chla_gridded.nc chla[t=01-jan-2003:01-nov-2018]
+
+!****
+cancel data/all
+cancel variable/all
+cancel mem/all
+!****
+!****#####################################################################################################!****
+!****       PLOT                                                                                          !****
+!****#####################################################################################################!****
+
+use A_chla_gridded.nc ! var=chla
+
+!PALETTE blue_green_yellow
+PALETTE blue_darkred
+
+fill/vlimits=97.5:0/t=01-jan-2003:01-nov-2018/nolabel/title="Monthly Mean Chloropyll-a (mg C/m^3)" chla !****[z=@fnr,x=@fnr,y=@fnr]
+contour/ov/nolab chla
+LABEL/NOUSER 4.5, -1, 0, 0, .2 @P2Chlorophyll (mg C/m^3)
+frame/file=A_chla_gotmersem_76-9.png 
+
+
+! REGRESSION LINE OR TREND LINE
+	LET reg_chla = chla[k=1:100@ave]
+	LET p = t[gt=reg_chla]
+  	LET q = reg_chla
+  	SET GRID q
+  	GO regresst
+  	!SHOW VAR
+plot/t=01-jan-2003:01-nov-2018 q ! 1:100 = 100m
+plot/ov/t=01-jan-2003:01-nov-2018 qhat ! 1:100 = 100m
+
+frame/file=A_chla_gotmersem_76-9_line.png 
+
+!****
+cancel data/all
+cancel variable/all
+cancel mem/all
+!****
